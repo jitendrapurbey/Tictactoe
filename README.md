@@ -8,7 +8,8 @@ Backend: Nodejs, Expressjs
 To run this game:
 1. Clone this repository
 2. Install all the packages using npm install
-3. Goto url localhost:3000
+3. run the application using node app.js 
+4. Goto url localhost:3000
 
 
 To test the api:
