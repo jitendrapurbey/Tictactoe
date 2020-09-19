@@ -49,4 +49,5 @@ app.post('/api/check', (req, res) => {
   }  
 })
 
-
+// export function for other use
+module.exports = app

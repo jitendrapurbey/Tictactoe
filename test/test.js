@@ -1,22 +1,30 @@
-// var expect  = require("chai").expect;
-// var request = require("request");
-var supertest = require("supertest");
-var should = require("should");
-
-// This agent refers to PORT where program is runninng.
-var server = supertest.agent("http://localhost:3000");
+var chai = require("chai")
+var chaiHttp = require("chai-http")
+var server = require("../app")
 
 
-describe("Testing", function() {
-    it("Testing Post Request using Mocha for tic tac toe game api", function(done) {
-        server.post('/api/check/')
-        .expect("Content-type",/json/)
-        .expect(200) // This is HTTP response.set('Content-Type', 'application/json')
-        .send({"board":[["X", "O", ""],["X", "O", ""],["X", "", ""]], "available":[1,2,3,4]})
+// Assertion style
+chai.should()
+
+chai.use(chaiHttp)
+
+
+describe("Tic Tac Toe Game API", function() {
+    it("Testing Post Request", function(done) {
+        const payload = {
+            "board":[["X", "O", ""],["X", "O", ""],["X", "", ""]],
+            "available": [1,2,3,4]
+        }
+        chai.request(server)
+        .post('/api/check/')
+        // .send({"board":[["X", "O", ""],["X", "O", ""],["X", "", ""]], "available":[1,2,3,4]})
+        .send(payload)
         .end(function(err,res){
-            //your code to Test
             // HTTP status should be 200
-            res.status.should.equal(200);
+            res.should.have.status(200)
+            res.body.should.have.property("status")
+            res.body.should.have.property("message")
+            res.body.status.should.equal(true)
             done();
         })
     });        
