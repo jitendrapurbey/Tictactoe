@@ -29,6 +29,9 @@ app.post('/api/check', (req, res) => {
   // var geo = req.body.geo;
   var board = req.body.board
   var available = req.body.available
+  if (typeof(available) == 'undefined'){
+      available = ''
+  }
   var result = check.checkwinner(board, available)
   console.log(result)
   // console.log(board)
