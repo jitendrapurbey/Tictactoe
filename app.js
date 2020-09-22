@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const check = require('./backend/main');
 
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json()) // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })) // support encoded bodies
